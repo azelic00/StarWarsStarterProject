@@ -1,55 +1,12 @@
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 
-import ItemsList from '../components/ItemsList';
-
-const Movies = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.searchInput}>
-        <Icon type='material' name="search" size={20} />
-        <TextInput
-          placeholder='Search'
-          placeholderTextColor='black'
-        />
-      </View>
-      <ItemsList />
-    </View>
-  );
-}
-
-const People = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.searchInput}>
-        <Icon type='material' name="search" size={20} />
-        <TextInput
-          placeholder='Search'
-          placeholderTextColor='black'
-        />
-      </View>
-      <ItemsList />
-    </View>
-  );
-}
-
-const Favorites = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.searchInput}>
-        <Icon type='material' name="search" size={20} />
-        <TextInput
-          placeholder='Search'
-          placeholderTextColor='black'
-        />
-      </View>
-      <ItemsList />
-    </View>
-  );
-}
+import Movies from '../screens/Movies';
+import People from '../screens/People';
+import Favorites from '../screens/Favorites';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,49 +1,36 @@
 import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
 
 import DisplayItem from './DisplayItem';
 
-const Data = [
-  {
-    id: 1,
-    name: 'Person1'
-  },
-  {
-    id: 2,
-    name: 'Person2'
-  },
-  {
-    id: 3,
-    name: 'Person3'
-  },
-  {
-    id: 4,
-    name: 'Person4'
-  },
-  {
-    id: 5,
-    name: 'Person1'
-  },
-  {
-    id: 6,
-    name: 'Person2'
-  },
-  {
-    id: 7,
-    name: 'Person3'
-  },
-  {
-    id: 8,
-    name: 'Person4'
-  },
-];
-
-const ItemsList = () => {
-  return (
-    <View style={styles.container}>
-      <FlatList data={Data} renderItem={({item}) => <DisplayItem {...item} />} keyExtractor={item => item.id} />
-    </View>
-  );
+const ItemsList = (props) => {
+  if (props.category=='People') {
+    return (
+      <View style={styles.container}>
+        <FlatList 
+          data={props.people}
+          renderItem={({item}) => <DisplayItem category={props.category} {...item} />}
+          keyExtractor={(item) => item.name}
+        />       
+      </View>
+    );
+  } else if (props.category=='Movies') {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={props.movies}
+          renderItem={({item}) => <DisplayItem category={props.category} {...item} />}
+          keyExtractor={(item) => item.episode_id}
+        />
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text>Ups! Something went wrong!</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

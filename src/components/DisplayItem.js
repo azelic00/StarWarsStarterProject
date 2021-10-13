@@ -7,9 +7,19 @@ const DisplayItem = (props) => {
     <View style={styles.container}>
       <TouchableOpacity>
         <View style={styles.picture}>
-          <Text>{props.id}</Text>
+          {props.category=='People' ? (
+            <Text>{props.birth_year}</Text>
+          ) : (
+            <Text>{props.episode_id}</Text>
+          )}
         </View>
-        <Text style={styles.title}>{props.name}</Text>
+        <Text style={styles.title}>
+          {props.category=='People' ? (
+            props.name
+          ) : (
+            props.title
+          )}
+        </Text>
         <View style={styles.icon}>
           <TouchableOpacity>
             <Icon type='material' name='star-outline' />
