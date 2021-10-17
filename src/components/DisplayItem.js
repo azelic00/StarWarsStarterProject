@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 const DisplayItem = (props) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.onDetailShow}>
         <View style={styles.picture}>
           {props.category=='People' ? (
             <Text>{props.birth_year}</Text>
@@ -21,7 +21,7 @@ const DisplayItem = (props) => {
           )}
         </Text>
         <View style={styles.icon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={props.onFavoriteSave}>
             <Icon type='material' name='star-outline' />
           </TouchableOpacity>
         </View>

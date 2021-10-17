@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 
-import Movies from '../screens/Movies';
-import People from '../screens/People';
-import Favorites from '../screens/Favorites';
+import { MoviesStackNavigator, PeopleStackNavigator, FavoritesStackNavigator } from './StackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,10 +11,10 @@ const BottomTabNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
-        headerTitleAlign: 'center',
+        headerShown: false,
         tabBarItemStyle: {
           borderColor: 'black',
-          borderRightWidth: 1,
+          borderRightWidth: 1
         },
         tabBarLabelStyle: {
           fontWeight: 'bold',
@@ -27,21 +24,21 @@ const BottomTabNavigator = () => {
       >
         <Tab.Screen
           name='Movies'
-          component={Movies}
+          component={MoviesStackNavigator}
           options={{
             tabBarIcon: ({color, size}) => (<Icon type='material' name='theaters' color={color} size={size} />)
           }}
         />
         <Tab.Screen
           name='People'
-          component={People}
+          component={PeopleStackNavigator}
           options={{
             tabBarIcon: ({color, size}) => (<Icon type='material' name='person' color={color} size={size} />)
           }}
         />
         <Tab.Screen
           name='Favorites'
-          component={Favorites}
+          component={FavoritesStackNavigator}
           options={{
             tabBarIcon: ({color, size}) => (<Icon type='material' name='favorite' color={color} size={size} />)
           }}
@@ -50,21 +47,5 @@ const BottomTabNavigator = () => {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  searchInput: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-    borderWidth: 5,
-    borderColor: 'black',
-    marginBottom: 25,
-    textAlign: 'center'
-  }
-});
 
 export default BottomTabNavigator;

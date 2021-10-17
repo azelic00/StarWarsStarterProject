@@ -17,7 +17,11 @@ export default class People extends Component {
     try {
       const response = await fetch('https://swapi.dev/api/people/?search=' + this.state.searchPerson);
       const json = await response.json();
-      this.setState({ people: json.results });
+      if (this.state.searchPerson) {
+        this.setState({ people: json.results });
+      } else {
+        this.setState({ people: [] });
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -29,11 +33,24 @@ export default class People extends Component {
     this.getPerson();
   }
 
+  onPersonDetailShow = () => {
+    this.props.navigation.navigate('Person details', {data: this.state.people, component: 'People'});
+  }
+
+  onPersonFavoriteSave = () => {
+    
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <SearchBar onChangeItemSearch={this.onChangePersonSearch} />
-        <ItemsList category='People' people={this.state.people} />
+        <ItemsList
+          category='People'
+          onPersonDetailShow={this.onPersonDetailShow}
+          onPersonFavoriteSave={this.onPersonFavoriteSave}
+          people={this.state.people}
+        />
       </View>
     );
   }
